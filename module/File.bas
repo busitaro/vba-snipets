@@ -39,3 +39,41 @@ Public Function getFile(path As String, Optional fullPath As Boolean = True) As 
     
     Set getFile = fileList
 End Function
+
+' ***************************************
+' * 2次元リスト(行、列で入れ子になったCollection)をファイル出力する
+' *
+' * Params
+' * ------
+' * filePath: String
+' *     出力ファイルパス
+' * valueList: Collection
+' *     出力するCollection(行、列で入れ子)
+' * delimiter: String (Optional)
+' *     値の区切り文字
+' ***************************************
+Public Function output2DimListToFile(filePath As String, valueList As Collection, Optional delimiter As String = ",")
+    Dim row As Collection
+    Dim value As Variant
+    Dim buffer As String
+
+    Dim fileNum As Integer
+
+    ' ファイルのオープン
+    fileNum = FreeFile
+    Open filePath For Output As #fileNum
+
+    ' ファイルの書き込み
+    For Each row In valueList
+        buffer = ""
+        For Each value In row
+            buffer = buffer & CStr(value) & delimiter
+        Next value
+        ' 末尾のdelimiterを削除
+        buffer = Left(buffer, Len(buffer) - Len(delimiter))
+        Print #fileNum, buffer
+    Next row
+    
+    ' ファイルのクローズ
+    Close #fileNum
+End Function
