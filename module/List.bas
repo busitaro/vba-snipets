@@ -24,3 +24,22 @@ Public Function concatList(beforeList As Collection, afterList As Collection)
 
     Set concatList = conList
 End Function
+
+' ***************************************
+' * 新規のcollectionオブジェクトを生成する
+' *
+' * Params
+' * ------
+' * values(): Variant
+' *     collectionに格納する値
+' ***************************************
+Public Function new_Collection(ParamArray values() As Variant) As Collection
+    Dim list As New Collection
+    Dim value As Variant
+
+    For Each value In values
+        Call list.Add(value)
+    Next
+
+    Set new_Collection = list
+End Function
