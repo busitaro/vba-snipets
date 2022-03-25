@@ -9,3 +9,4 @@ vbaのsnipet
 
 ## cls
 - [SortCollection.cls](cls/SortCollection.cls)	: ソート機能付きCollection
+- [CsvParser.cls](cls/CsvParser.cls)	: CSVのパーサ
